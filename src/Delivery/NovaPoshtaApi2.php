@@ -375,6 +375,8 @@ class NovaPoshtaApi2 {
 	 * @return mixed
 	 */
 	function getWarehouse($cityRef, $description = '') {
+		$error = false;
+
 		$warehouses = $this->getWarehouses($cityRef);
 		$data = array();
 		if (is_array($warehouses['data'])) {
