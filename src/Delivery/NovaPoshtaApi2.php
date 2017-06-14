@@ -569,14 +569,14 @@ class NovaPoshtaApi2
 	 */
 	function getCity($cityName, $areaName = '')
 	{
-		$error = false;
-		// Get cities by name
-		$cities = $this->getCities(0, $cityName);
+        $error = false;
+        // Get cities by name
+        $cities = $this->getCities(0, $cityName);
 
-		if (is_array($cities['data'])) {
-			// If cities more then one, calculate current by area name
+        if (is_array($cities['data'])) {
+            // If cities more then one, calculate current by area name
 			$data = (count($cities['data']) > 1)
-				? $this->findCityByRegion($cities, $areaName)
+				? $this->findCityByRegion($cities, $areaName)[0]
 				: $cities['data'][0];
 		}
 

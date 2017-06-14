@@ -13,7 +13,7 @@ class NovaPoshtaApi2Test extends \PHPUnit_Framework_TestCase
 	 * 
 	 * @see https://my.novaposhta.ua/settings/index#apikeys
 	 */
-	private $key = '';
+	private $key = '9d336a2071fefa7d86219f52eba24d9c';
 	/**
 	 * Instace of tested class
 	 */
@@ -198,6 +198,14 @@ class NovaPoshtaApi2Test extends \PHPUnit_Framework_TestCase
 		$result = $this->np->getCity($cityName, $regionName);
 		$this->assertTrue($result['success']);
 	}
+
+    /**
+     * @dataProvider getCityData
+     */
+	function testGetCityFormat($cityName, $regionName){
+	    $result = $this->np->getCity($cityName, $regionName);
+	    $this->assertTrue(isset($result['data'][0]['Ref']));
+    }
 	
 	/**
 	 * Data provider for testGetCity
