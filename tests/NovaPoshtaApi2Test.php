@@ -155,6 +155,12 @@ class NovaPoshtaApi2Test extends \PHPUnit_Framework_TestCase
 		$result = $this->np->getArea($areaName, $areaRef);
 		$this->assertTrue($result['success']);
 	}
+
+	function testGetCitiesByArea()
+    {
+        $data = $this->np->getCitiesByArea('Львівська');
+        $this->assertEquals(77,count($data['data']));
+    }
 	
 	/**
 	 * Data provider for testGetArea

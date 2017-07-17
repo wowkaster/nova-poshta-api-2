@@ -552,8 +552,8 @@ class NovaPoshtaApi2
 		$area['success'] AND $areaRef = $area['data'][0]['Ref'];
 		if ($areaRef AND is_array($cities['data'])) {
 			foreach ($cities['data'] as $city) {
-				if ($city['Area'] == $areaRef) {
-					$data[] = $city;
+                if ($city['Area'] == $areaRef) {
+                    $data[] = $city;
 				}
 			}
 		}
@@ -592,6 +592,21 @@ class NovaPoshtaApi2
 				'info' => array(),
 			));
 	}
+
+	public function getCitiesByArea($areaName = '')
+    {
+        $cities = $this->getCities();
+        $data = $this->findCityByRegion($cities, $areaName);
+        return $this->prepare(
+            array(
+                'success' => true,
+                'data' => $data,
+                'errors' => array(),
+                'warnings' => array(),
+                'info' => array()
+        ));
+
+    }
 
 	/**
 	 * Magic method of calling functions (uses for calling Common Model of NovaPoshta API)
